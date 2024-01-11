@@ -92,7 +92,7 @@ public class Patient implements Serializable {
         this.patientPhone = "";
         this.patientGender = 0;
         this.patientAge = 0;
-        this.photo="";
+        this.photo="avatar.jpg";
     }
 
     private static final long serialVersionUID = 1L;

@@ -38,8 +38,9 @@ public class BedController {
     // 更新
     @PutMapping("/update")
     public String updateBed(@RequestBody Bed bed) {
-        System.out.println(bed.getBedId());
-        System.out.println((bed.getWardId()));
+        Bed bed1 =bedDao.getById(bed.getBedId());
+//        System.out.println(bed.getBedId());
+//        System.out.println((bed.getWardId()));
         bed.setBedStatus(1);
 
         Ward ward = wardDao.findById(bed.getWardId()).get();
@@ -54,6 +55,7 @@ public class BedController {
         ward.setStatus(str1);
         wardDao.save(ward);
 
+        bed.setBedNumber(bed1.getBedNumber());
         bedDao.save(bed);
         return new Result<>(RCFactory.getSuccess(), "更改成功").toString();
     }

@@ -51,7 +51,7 @@ public class PatientController {
 //        String password = Md5Util.getMD5(patient.getPatientPassword());
 //        patient.setPatientPassword(password);
         Patient patient1 = patientDao.findById(patient.getPatientId()).get();
-        System.out.println((patient1.getPatientPassword()));
+//        System.out.println((patient1.getPatientPassword()));
         patient1.setPatientName(patient.getPatientName());
         patient1.setPatientAge(patient.getPatientAge());
         patient1.setPatientPhone(patient.getPatientPhone());
@@ -80,9 +80,11 @@ public class PatientController {
         try {
             List<Patient> tar = patientDao.findByPatientName(patient.getPatientName());
             List<Patient> tar1 = patientDao.findAllByPatient_certificates_no(patient.getPatientCertificatesNo());
-            System.out.println(tar1);
+//            System.out.println(tar1);
             if (tar1.size() == 0) {
+//                System.out.println(patient.getPatientPassword());
                 String password = Md5Util.getMD5(patient.getPatientPassword());
+//                System.out.println(password);
                 patient.setPatientPassword(password);
                 this.patientDao.save(patient);
                 return new Result<>(RCFactory.getSuccess(), "注册成功").toString();
@@ -100,10 +102,11 @@ public class PatientController {
     public String Patient_login(@RequestBody Patient patient) {
         List<Patient> patients = this.patientDao.findByPatientName(patient.getPatientName());
         String password = Md5Util.getMD5(patient.getPatientPassword());
-//        System.out.println(password);
+        System.out.println(password);
+//        System.out.println(patients);
         for (Patient item : patients) {
             // 执行对patient的操作
-//            System.out.println(item.toString());
+//            System.out.println(item.getPatientPassword());
             if(item.getPatientPassword().equals(password)){
                 return new Result<>(RCFactory.getSuccess(),item.getPatientId()).toString();
             }
