@@ -86,6 +86,7 @@ public class AdminController {
         String password = Md5Util.getMD5(admin.getAdminPassword());
         List<Admin> admins = this.adminDao.findByAdminName(admin.getAdminName());
         for (Admin item : admins ){
+            System.out.println(password);
             if(item.getAdminPassword().equals(password)){
                 return new Result<>(RCFactory.getSuccess(),item.getAdminId()).toString();
             }

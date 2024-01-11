@@ -32,7 +32,7 @@ public class Dept implements Serializable {
     private String state;
 
     /**
-     * 值班医生ID,外键
+     * 值班医生ID
      */
     @Column(name = "duty_doctor")
     @JsonProperty("dutydoctor")
@@ -75,6 +75,7 @@ public class Dept implements Serializable {
         this.isDelete = false;
         this.deptName = "";
         this.state="0000000";
+        this.dutyDoctor=0;
     }
 
     private static final long serialVersionUID = 1L;
